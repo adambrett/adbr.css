@@ -1,8 +1,10 @@
 name: npm-publish
 
 on:
-  push:
-    branches: [main]
+  workflow_run:
+    workflows: ["ci"]
+    types: [completed]
+  workflow_dispatch:
 
 permissions:
   contents: write # required to push git tags
@@ -11,8 +13,14 @@ permissions:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    if: |
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_branch == 'main')
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
 
       - uses: actions/setup-node@v4
         with:
@@ -57,8 +65,6 @@ jobs:
 
       - name: Publish to npm
         if: steps.already_published.outputs.published != 'true'
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --access public --provenance
 
       - name: Tag release
