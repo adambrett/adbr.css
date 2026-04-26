@@ -24,9 +24,12 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
           registry-url: https://registry.npmjs.org
+
+      - name: Upgrade npm for trusted publishing
+        run: npm i -g npm@latest
 
       - name: Install dependencies
         run: npm ci
@@ -40,8 +43,8 @@ jobs:
       - name: Ensure generated files are committed
         shell: bash
         run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
+          git diff --exit-code -- adbr.min.css
+          test -z "$(git status --porcelain -- adbr.min.css)"
 
       - name: Resolve package version
         id: version

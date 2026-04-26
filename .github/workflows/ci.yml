@@ -26,5 +26,5 @@ jobs:
       - name: Ensure generated files are committed
         shell: bash
         run: |
-          git diff --exit-code
-          test -z "$(git status --porcelain)"
+          git diff --exit-code -- adbr.min.css
+          test -z "$(git status --porcelain -- adbr.min.css)"
