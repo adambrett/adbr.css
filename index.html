@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>adbr.css</title>
+    <meta
+      name="description"
+      content="A classless stylesheet for blog-like reading sites. Drop it in, write semantic HTML, get clean typography on a strict baseline."
+    />
+    <link rel="stylesheet" href="adbr.css" />
+    <style>
+      body::before {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        display: block;
+        height: 5px;
+        background: var(--accent);
+        content: "";
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav aria-label="Primary">
+        <a href="./">Home</a>
+        <a href="#getting-started">Get started</a>
+        <a href="#customise">Customise</a>
+        <a href="#styling">Styling</a>
+      </nav>
+    </header>
+
+    <main>
+      <article>
+        <h1>adbr.css</h1>
+        <p><strong>Clean, classless typography for reading-first sites.</strong></p>
+        <p>
+          Drop in one stylesheet, write semantic HTML, and get baseline-driven spacing, readable
+          measure, and sensible defaults for the elements you actually use.
+        </p>
+
+        <p>
+          Want to see everything styled?
+          <a href="./demo/">Open the demo page</a>.
+        </p>
+
+        <hr />
+
+        <h2 id="features">Features</h2>
+        <ul>
+          <li>
+            <strong>Readable measure</strong> - defaults to <code>68ch</code>, in the commonly
+            recommended 45 to 75 characters-per-line range (see
+            <a href="https://en.wikipedia.org/wiki/Line_length">line length</a>).
+          </li>
+          <li>
+            <strong>Fully configurable, modern CSS</strong> - built with CSS custom properties so
+            you can override design tokens (colours, spacing, measure) in plain CSS.
+          </li>
+          <li>
+            <strong>Reading-first type pairing</strong> - serif body text, with sans-serif headings
+            for clear contrast (see Butterick’s Practical Typography on
+            <a href="https://practicaltypography.com/body-text.html">body text</a> and
+            <a href="https://practicaltypography.com/mixing-fonts.html">mixing fonts</a>).
+          </li>
+          <li><strong>Baseline rhythm</strong> for predictable vertical spacing.</li>
+          <li><strong>Light and dark</strong> using <code>prefers-color-scheme</code>, with an optional override.</li>
+          <li><strong>Real HTML coverage</strong> - forms, tables, code, media, details, blockquotes.</li>
+          <li><strong>One file</strong>, no classes required, no build step.</li>
+          <li><strong>Themes</strong> as optional palette files layered on top.</li>
+        </ul>
+
+        <hr />
+
+        <h2 id="getting-started">Getting started</h2>
+        <p>For a quick test (please do not hotlink in production):</p>
+        <pre><code>&lt;link rel="stylesheet" href="https://css.adbr.dev/adbr.css"&gt;</code></pre>
+
+        <p>Download:</p>
+        <ul>
+          <li><a href="./adbr.css" download>Full CSS</a> - readable source</li>
+          <li><a href="./adbr.min.css" download>Minified CSS</a> - small and fast</li>
+        </ul>
+
+        <p>Package manager (recommended):</p>
+        <pre><code>npm i @adbr/adbr.css</code></pre>
+
+        <p>Use it like this:</p>
+        <pre><code>&lt;link rel="stylesheet" href="/adbr.css" /&gt;</code></pre>
+
+        <hr />
+
+        <h2 id="customise">Customise</h2>
+        <p>
+          adbr.css follows system light/dark by default. To force a theme, set
+          <code>data-theme="light"</code> or <code>data-theme="dark"</code> on <code>&lt;html&gt;</code>.
+        </p>
+        <pre><code>&lt;html lang="en" data-theme="dark"&gt;</code></pre>
+
+        <h3>Themes</h3>
+        <p>
+          Themes are optional colour palettes. Include <code>adbr.css</code> first, then a theme file.
+        </p>
+        <pre><code>&lt;link rel="stylesheet" href="/adbr.css" /&gt;
+&lt;link rel="stylesheet" href="/themes/cool-grey-indigo.css" /&gt;</code></pre>
+
+        <p>Available themes:</p>
+        <ul>
+          <li><a href="./themes/warm-paper-teal.css">Warm Paper + Teal</a></li>
+          <li><a href="./themes/cool-grey-indigo.css">Cool Grey + Indigo</a></li>
+          <li><a href="./themes/charcoal-cyan.css">Charcoal + Cyan</a></li>
+        </ul>
+
+        <h3>Create your own theme</h3>
+        <p>
+          A theme is just a small CSS file that overrides the design tokens. Start by copying one of
+          the existing theme files in <code>/themes</code>, then tweak colours and spacing to match
+          your site.
+        </p>
+        <pre><code>/* my-theme.css */
+:root {
+  --bg: #ffffff;
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --rule: #e5e7eb;
+
+  --accent: #0ea5e9;
+  --accent-hover: #0284c7;
+}</code></pre>
+
+        <hr />
+
+        <h2 id="styling">Styling</h2>
+        <p>
+          Here are a few examples with their matching snippets.
+        </p>
+
+        <h3>Typography</h3>
+        <p>
+          This is <strong>strong</strong>, this is <em>emphasis</em>, this is <mark>marked</mark>,
+          and this is <small>small text</small>. Links look like
+          <a href="#" onclick="return false;">this</a>.
+        </p>
+        <pre><code>&lt;p&gt;
+  This is &lt;strong&gt;strong&lt;/strong&gt;, this is &lt;em&gt;emphasis&lt;/em&gt;,
+  this is &lt;mark&gt;marked&lt;/mark&gt;, and this is &lt;small&gt;small text&lt;/small&gt;.
+  Links look like &lt;a href="#"&gt;this&lt;/a&gt;.
+&lt;/p&gt;</code></pre>
+
+        <h3>Headings (h1-h6)</h3>
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+        <pre><code>&lt;h1&gt;Heading 1&lt;/h1&gt;
+&lt;h2&gt;Heading 2&lt;/h2&gt;
+&lt;h3&gt;Heading 3&lt;/h3&gt;
+&lt;h4&gt;Heading 4&lt;/h4&gt;
+&lt;h5&gt;Heading 5&lt;/h5&gt;
+&lt;h6&gt;Heading 6&lt;/h6&gt;</code></pre>
+
+        <h3>Code</h3>
+        <p>Inline code like <code>printf</code>, and a code block:</p>
+        <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+echo "hello"</code></pre>
+        <pre><code>&lt;p&gt;Inline code like &lt;code&gt;printf&lt;/code&gt;...&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;echo "hello"&lt;/code&gt;&lt;/pre&gt;</code></pre>
+
+        <h3>Tables</h3>
+        <table>
+          <caption>
+            A small table - use real <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, and
+            <code>&lt;tbody&gt;</code>.
+          </caption>
+          <thead>
+            <tr>
+              <th>Thing</th>
+              <th>Default</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Measure</td>
+              <td>68ch</td>
+              <td>Readable line length</td>
+            </tr>
+            <tr>
+              <td>Baseline</td>
+              <td>1.5rem</td>
+              <td>Consistent vertical rhythm</td>
+            </tr>
+          </tbody>
+        </table>
+        <pre><code>&lt;table&gt;
+  &lt;caption&gt;A small table...&lt;/caption&gt;
+  &lt;thead&gt;...&lt;/thead&gt;
+  &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+
+        <h3>Forms</h3>
+        <form onsubmit="return false;">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="name@example.com" />
+
+          <label for="topic">Topic</label>
+          <select id="topic">
+            <option>Writing</option>
+            <option>Code</option>
+            <option>Something else</option>
+          </select>
+
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Say the thing."></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+        <pre><code>&lt;form&gt;
+  &lt;label for="email"&gt;Email&lt;/label&gt;
+  &lt;input id="email" type="email" /&gt;
+  ...
+  &lt;button type="submit"&gt;Send&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+        <p>
+          For the full surface area (details, media, quotes, and more), use the
+          <a href="./demo/">demo page</a>.
+        </p>
+      </article>
+    </main>
+
+    <footer>
+      <small>
+        BSD-3-Clause licensed. Source on
+        <a href="https://github.com/adambrett/adbr.css">GitHub</a>.
+        <a href="https://adbr.me">Author</a>.
+      </small>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+/**
+ * adbr.css theme: Warm Paper + Teal
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="adbr.css">
+ *   <link rel="stylesheet" href="themes/warm-paper-teal.css">
+ */
+
+:root {
+  --bg: #fffbf5;
+  --fg: #1f2937;
+  --muted: #6b7280;
+  --rule: #f1e3d3;
+  --accent: #0f766e;
+  --accent-hover: #115e59;
+  --code-bg: #111827;
+  --code-fg: #d1d5db;
+  --code-inline: #c026d3;
+  --panel-bg: #fff4e6;
+  --panel-border: #f1e3d3;
+  --link-visited: #6d28d9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-scheme: dark;
+    --bg: #14181c;
+    --fg: #e8eaed;
+    --muted: #8b939c;
+    --rule: #343a42;
+    --accent: #2dd4bf;
+    --accent-hover: #5eead4;
+    --code-bg: #0a0c0e;
+    --code-fg: #c2ccd4;
+    --code-inline: #f472b6;
+    --panel-bg: #1c2229;
+    --panel-border: #3a424d;
+    --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+    --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+    --link-visited: #c4b5fd;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-scheme: dark;
+  --bg: #14181c;
+  --fg: #e8eaed;
+  --muted: #8b939c;
+  --rule: #343a42;
+  --accent: #2dd4bf;
+  --accent-hover: #5eead4;
+  --code-bg: #0a0c0e;
+  --code-fg: #c2ccd4;
+  --code-inline: #f472b6;
+  --panel-bg: #1c2229;
+  --panel-border: #3a424d;
+  --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+  --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+  --link-visited: #c4b5fd;
+}
+

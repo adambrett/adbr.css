@@ -1,0 +1,23 @@
+{
+  "name": "@adbr/adbr.css",
+  "version": "1.0.0",
+  "description": "A classless stylesheet for blog-like reading sites.",
+  "license": "BSD-3-Clause",
+  "files": [
+    "adbr.css",
+    "adbr.min.css",
+    "themes/*.css"
+  ],
+  "main": "adbr.css",
+  "devDependencies": {
+    "http-server": "^14.1.1",
+    "lightningcss-cli": "^1.27.0",
+    "stylelint": "^16.19.0",
+    "stylelint-config-standard": "^38.0.0"
+  },
+  "scripts": {
+    "build": "lightningcss --minify adbr.css -o adbr.min.css",
+    "lint": "stylelint adbr.css",
+    "preview": "http-server . -o /"
+  }
+}

@@ -1,0 +1,633 @@
+/**
+ * adbr.css
+ *
+ * A classless stylesheet for blog-like reading sites.
+ * Drop it in, write semantic HTML, get clean typography on a strict baseline.
+ *
+ * Rhythm: use relative units (rem, em, var(--baseline)) for spacing. Use fixed
+ * px only to offset true 1px / 2px borders and hairlines, not for vertical rhythm.
+ */
+
+@layer tokens, reset, base, type, forms, media, debug;
+
+@layer tokens {
+  :root {
+    /* baseline + measure */
+    --baseline: 1.6rem;
+    --baseline-margin: calc(var(--baseline) - 0.0385rem);
+    --measure: 68ch;
+
+    /* fonts */
+    --font-serif: "Georgia", "Iowan Old Style", "Charter", "Times New Roman", serif;
+    --font-sans: -apple-system, "BlinkMacSystemFont", "Segoe UI", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SF Mono", "Menlo", "Consolas", monospace;
+    --color-scheme: light;
+
+    /* light */
+    --bg: #fff;
+    --fg: #0f172a;
+    --muted: #475569;
+    --rule: #e2e8f0;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --code-bg: #0b1220;
+    --code-fg: #cbd5e1;
+    --code-inline: #e11d48;
+    --panel-bg: #f8fafc;
+    --panel-border: #e2e8f0;
+    --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 5%);
+    --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 30%, transparent);
+    --link-visited: #7c3aed;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --color-scheme: dark;
+      --bg: #14181c;
+      --fg: #e8eaed;
+      --muted: #8b939c;
+      --rule: #343a42;
+      --accent: #3ebef2;
+      --accent-hover: #6bcff5;
+      --code-bg: #0a0c0e;
+      --code-fg: #c2ccd4;
+      --code-inline: #ff6b7d;
+      --panel-bg: #1c2229;
+      --panel-border: #3a424d;
+      --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+      --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+      --link-visited: #b794f6;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --color-scheme: dark;
+    --bg: #14181c;
+    --fg: #e8eaed;
+    --muted: #8b939c;
+    --rule: #343a42;
+    --accent: #3ebef2;
+    --accent-hover: #6bcff5;
+    --code-bg: #0a0c0e;
+    --code-fg: #c2ccd4;
+    --code-inline: #ff6b7d;
+    --panel-bg: #1c2229;
+    --panel-border: #3a424d;
+    --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+    --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+    --link-visited: #b794f6;
+  }
+}
+
+@layer reset {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer base {
+  html {
+    color-scheme: var(--color-scheme);
+    font-size: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    text-rendering: optimizelegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 22%, var(--bg));
+    color: var(--fg);
+  }
+
+  body {
+    font-family: var(--font-serif);
+    font-size: 100%;
+    line-height: var(--baseline);
+  }
+
+  main,
+  article,
+  header,
+  footer,
+  nav,
+  section {
+    display: block;
+  }
+
+  main,
+  header,
+  footer {
+    width: min(100%, var(--measure));
+    margin-inline: auto;
+  }
+
+  header,
+  footer {
+    padding-block: var(--baseline);
+  }
+
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--focus);
+    border-radius: 4px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      scroll-behavior: auto !important;
+      transition: none !important;
+      animation: none !important;
+    }
+  }
+}
+
+@layer type {
+  :where(ul, ol, dl, table, blockquote, figure, hr, details, address, form, fieldset, p) {
+    margin-block-end: var(--baseline-margin);
+  }
+
+  :is(details, fieldset) > :last-child {
+    margin-block-end: 0;
+  }
+
+  blockquote > :last-child:not(form) {
+    margin-block-end: 0;
+  }
+
+  hr {
+    border-top: 1px solid var(--rule);
+
+    /* 1px border: pull up by one device pixel, not a spacing choice. */
+    margin-block-start: -1px;
+    margin-block-end: var(--baseline-margin);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
+    font-size: 100%;
+    line-height: var(--baseline);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  h1 {
+    font-size: 2rem;
+    line-height: calc(var(--baseline) * 2);
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: calc(var(--baseline) * 2);
+  }
+
+  h3 {
+    font-size: 1.25rem;
+    line-height: calc(var(--baseline) * 2);
+    margin-block-end: 0;
+  }
+
+  h4 {
+    font-size: 1.125rem;
+    line-height: var(--baseline);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.15em;
+  }
+
+  a:hover {
+    color: var(--accent-hover);
+  }
+
+  a:visited {
+    color: color-mix(in srgb, var(--accent) 55%, var(--link-visited));
+  }
+
+  time {
+    color: var(--muted);
+  }
+
+  small {
+    font-size: 100%;
+    line-height: var(--baseline);
+    color: var(--muted);
+  }
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  em,
+  i {
+    font-style: italic;
+  }
+
+  abbr[title] {
+    cursor: help;
+    text-decoration: underline dotted;
+    text-underline-offset: 0.12em;
+  }
+
+  sub,
+  sup {
+    font-size: 0.75em;
+    line-height: 0;
+  }
+
+  sup {
+    vertical-align: super;
+  }
+
+  sub {
+    vertical-align: sub;
+  }
+
+  del {
+    text-decoration: line-through;
+    text-decoration-thickness: 1px;
+    color: color-mix(in srgb, var(--fg) 65%, var(--muted));
+  }
+
+  ins {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.12em;
+    background: color-mix(in srgb, var(--accent) 12%, transparent);
+  }
+
+  q {
+    quotes: "“" "”" "‘" "’";
+  }
+
+  ul,
+  ol {
+    padding-inline-start: 1.8em;
+  }
+
+  li > ul,
+  li > ol {
+    margin-block-end: 0;
+  }
+
+  dl {
+    padding-inline-start: 0;
+  }
+
+  dt {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  dd {
+    margin-inline-start: 1.8em;
+  }
+
+  dd:not(:last-child) {
+    margin-block-end: calc(var(--baseline-margin) / 2);
+  }
+
+  li {
+    line-height: var(--baseline);
+  }
+
+  li::marker {
+    line-height: var(--baseline);
+  }
+
+  ol li::marker {
+    font-variant-numeric: tabular-nums;
+  }
+
+  blockquote {
+    padding-block: calc(var(--baseline) / 2);
+    padding-inline-start: 1.8em;
+    border-inline-start: 3px solid var(--rule);
+    color: color-mix(in srgb, var(--fg) 85%, var(--muted));
+  }
+
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: var(--font-mono);
+    font-size: calc(1em - 1px);
+    line-height: var(--baseline);
+  }
+
+  code {
+    color: var(--code-inline);
+  }
+
+  code::before,
+  code::after {
+    content: "`";
+  }
+
+  pre {
+    overflow-x: auto;
+    margin-block-end: var(--baseline-margin);
+    padding-block: var(--baseline);
+    padding-inline: var(--baseline);
+    background: var(--code-bg);
+    color: var(--code-fg);
+    border-radius: 6px;
+  }
+
+  pre code {
+    color: inherit;
+  }
+
+  pre code::before,
+  pre code::after {
+    content: "";
+  }
+
+  kbd {
+    padding: 0.1em 0.35em;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    background: color-mix(in srgb, var(--bg) 90%, var(--rule));
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  caption {
+    font-family: var(--font-sans);
+    font-size: 0.875em;
+    line-height: var(--baseline);
+    color: var(--muted);
+    text-align: start;
+    caption-side: top;
+    padding: 0;
+  }
+
+  /* Cell row: half-B padding, one line, border. Two rows = 2 baselines. */
+  th,
+  td {
+    padding-block-start: calc(var(--baseline) / 2);
+    padding-block-end: calc((var(--baseline) / 2) - 1px);
+    padding-inline: calc(var(--baseline) / 2);
+    text-align: start;
+    vertical-align: top;
+    line-height: var(--baseline);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* First column: labels (start). Other columns: values (end) + tabular numerals. */
+  th {
+    font-family: var(--font-sans);
+    font-weight: 600;
+  }
+
+  thead th[colspan] {
+    text-align: center;
+  }
+
+  /* Stronger line under the header; padding matches 2px border. */
+  thead th {
+    padding-block-end: calc((var(--baseline) / 2) - 2px);
+    border-bottom: 2px solid var(--rule);
+  }
+
+  th:not(:first-child),
+  td:not(:first-child) {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  tbody tr:hover {
+    background: var(--panel-bg);
+  }
+
+  mark {
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: inherit;
+  }
+
+  details {
+    padding: calc(var(--baseline) / 2);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--panel-bg);
+    box-shadow: var(--shadow-inset);
+  }
+
+  summary {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    line-height: var(--baseline);
+    cursor: pointer;
+  }
+}
+
+@layer forms {
+  /* Column flex avoids phantom gaps from whitespace after </textarea> before <button>. */
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    row-gap: 0;
+  }
+
+  label {
+    display: block;
+    font-family: var(--font-sans);
+    line-height: var(--baseline);
+    margin-block-end: calc(var(--baseline) / 4);
+  }
+
+  input,
+  select,
+  textarea,
+  button {
+    font: inherit;
+  }
+
+  input:not(
+      [type="checkbox"],
+      [type="radio"],
+      [type="button"],
+      [type="submit"],
+      [type="reset"],
+      [type="image"],
+      [type="hidden"]
+    ),
+  select,
+  textarea {
+    width: 100%;
+    margin-block-end: var(--baseline);
+    padding-inline: calc(var(--baseline) / 3);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+    background: var(--bg);
+    color: var(--fg);
+  }
+
+  input:not(
+      [type="checkbox"],
+      [type="radio"],
+      [type="file"],
+      [type="color"],
+      [type="range"],
+      [type="image"],
+      [type="button"],
+      [type="submit"],
+      [type="reset"],
+      [type="hidden"]
+    ) {
+    padding-block: calc(var(--baseline) / 3);
+    line-height: var(--baseline);
+  }
+
+  select {
+    padding-block: calc(var(--baseline) / 3 + 3px);
+    line-height: var(--baseline);
+  }
+
+  /* min-height is border-box: adjust it (not only padding) to change outer height. */
+  textarea {
+    padding-block: calc((var(--baseline) / 2) - 1px);
+    line-height: var(--baseline);
+    min-height: calc(var(--baseline) * 6 - 4px);
+    resize: vertical;
+  }
+
+  input[type="file"],
+  input[type="color"],
+  input[type="range"] {
+    padding-block: calc(var(--baseline) / 3);
+    line-height: var(--baseline);
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    width: auto;
+    height: auto;
+    margin-block-end: var(--baseline);
+  }
+
+  button,
+  input[type="submit"],
+  input[type="button"],
+  input[type="reset"] {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    margin-block-end: calc(var(--baseline) * 1.25);
+    padding-block: calc(var(--baseline) / 3);
+    padding-inline: calc(var(--baseline) / 2);
+    line-height: var(--baseline);
+    border: 1px solid color-mix(in srgb, var(--accent) 25%, var(--panel-border));
+    border-radius: 4px;
+    background: color-mix(in srgb, var(--accent) 12%, var(--bg));
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  form button,
+  form > input[type="submit"],
+  form > input[type="button"],
+  form > input[type="reset"] {
+    align-self: flex-start;
+    width: max-content;
+    max-width: 100%;
+  }
+
+  button:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover,
+  input[type="reset"]:hover {
+    background: color-mix(in srgb, var(--accent) 18%, var(--bg));
+    color: var(--accent-hover);
+  }
+
+  fieldset {
+    padding: calc((var(--baseline) / 2) - 1px) calc(var(--baseline) / 2);
+    border: 1px solid var(--panel-border);
+    border-radius: 8px;
+  }
+
+  legend {
+    font-family: var(--font-sans);
+    padding-inline: 0.4em;
+    color: var(--muted);
+  }
+
+  form > :last-child {
+    margin-block-end: 0;
+  }
+
+  form > button:last-child,
+  form > input[type="submit"]:last-child,
+  form > input[type="button"]:last-child,
+  form > input[type="reset"]:last-child {
+    margin-block-end: calc(var(--baseline) / 4);
+  }
+}
+
+@layer media {
+  figure > img,
+  figure > video,
+  figure > picture {
+    display: block;
+    margin-inline: auto;
+  }
+
+  figcaption {
+    font-family: var(--font-sans);
+    font-size: 0.875em;
+    line-height: var(--baseline);
+    color: var(--muted);
+  }
+}
+
+@layer debug {
+  body.debug {
+    position: relative;
+  }
+
+  body.debug::after {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-color: transparent;
+
+    /* 1px hairline between rows: fixed px, not rhythm. */
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent calc(var(--baseline) - 1px),
+      color-mix(in srgb, var(--accent) 18%, transparent) calc(var(--baseline) - 1px),
+      color-mix(in srgb, var(--accent) 18%, transparent) var(--baseline)
+    );
+    content: "";
+  }
+
+  body.debug > * {
+    position: relative;
+    z-index: 1;
+  }
+}

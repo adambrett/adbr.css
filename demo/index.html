@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>adbr.css demo</title>
+    <link rel="stylesheet" href="../adbr.css" />
+    <link rel="stylesheet" href="" id="demo-theme-link" disabled />
+    <style>
+      body::before {
+        position: fixed;
+        inset: 0 0 auto 0;
+        z-index: 50;
+        display: block;
+        height: 5px;
+        background: var(--accent);
+        content: "";
+      }
+
+      .demo-header-bar nav[aria-label="Demo"] {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.75rem;
+        min-block-size: calc(var(--baseline) * 2);
+      }
+
+      .demo-header-bar nav[aria-label="Demo"] label[for="demo-theme-select"] {
+        margin-inline-start: auto;
+        margin-block-end: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        align-self: center;
+      }
+
+      /* Demo toolbar select: smaller, baseline-aligned */
+      #demo-theme-select {
+        width: auto;
+        margin-block-end: 0;
+        padding-block: 0.35rem;
+        line-height: 1.2;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="demo-header-bar">
+        <nav aria-label="Demo">
+          <a
+            href="#"
+            id="demo-toggle-debug"
+            aria-pressed="false"
+            aria-label="Toggle baseline debug overlay"
+            >Debug</a>
+          <a
+            href="#"
+            data-theme-ctrl="auto"
+            class="is-active"
+            aria-pressed="true"
+            >System</a>
+          <a href="#" data-theme-ctrl="light" aria-pressed="false">Light</a>
+          <a href="#" data-theme-ctrl="dark" aria-pressed="false">Dark</a>
+          <label for="demo-theme-select">
+            Theme
+            <select id="demo-theme-select" aria-label="Theme selector">
+              <option value="">Default</option>
+              <option value="warm-paper-teal">Warm Paper + Teal</option>
+              <option value="cool-grey-indigo">Cool Grey + Indigo</option>
+              <option value="charcoal-cyan">Charcoal + Cyan</option>
+            </select>
+          </label>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <article>
+        <h1>adbr.css</h1>
+        <p>
+          This page is a simple test surface. It uses only semantic HTML. If you
+          add the class <code>debug</code> to <code>&lt;body&gt;</code>, you get
+          a baseline grid overlay.
+        </p>
+
+        <h2 id="type">Typography</h2>
+        <p>
+          The default font stack is serif, with headings in sans. Links are the
+          accent colour and inline code is loud on purpose. A date in text uses
+          <code>&lt;time&gt;</code>, e.g.
+          <time datetime="2026-04-25">25 April 2026</time>.
+        </p>
+
+        <p>
+          This is <strong>strong</strong>, this is <em>emphasis</em>, this is
+          <mark>marked</mark>, and this is <small>small text</small>.
+        </p>
+
+        <h3 id="phrases">Phrases, edits, and quotes</h3>
+        <p>
+          A <abbr title="Cascading Style Sheets">CSS</abbr> file with a
+          <abbr title="too long; didn’t read">TL;DR</abbr> still benefits from
+          a dotted underline on expansions. Chemistry uses subscripts, e.g.
+          H<sub>2</sub>O; footnotes and ordinal ideas use superscripts, e.g.
+          E = mc<sup>2</sup> or the 2<sup>nd</sup> draft.
+        </p>
+        <p>
+          We might show a price change: the offer was
+          <del>£12.00</del> <ins>£9.99</ins> after a correction. A short
+          <q>inline quotation is wrapped automatically</q>, and
+          <q>you can <q>nest inner quotes</q> when a sentence refers to someone
+            who was also quoting</q> without hand-typing quote marks.
+        </p>
+
+        <h3>Lists</h3>
+        <ul>
+          <li>Unordered list item</li>
+          <li>
+            Another item with a nested list
+            <ul>
+              <li>Nested item</li>
+              <li>Nested item</li>
+            </ul>
+          </li>
+          <li>A final item</li>
+        </ul>
+
+        <ol>
+          <li>Ordered list item</li>
+          <li>Another item</li>
+          <li>A final item</li>
+        </ol>
+
+        <blockquote>
+          <p>
+            Blockquotes are for pulling a thought out of the flow. The point is
+            to make the contrast obvious without adding noise.
+          </p>
+        </blockquote>
+
+        <details>
+          <summary>Details and summary</summary>
+          <p>
+            Use this for footnotes, tangents, and optional background. Keep it
+            out of the main line of argument.
+          </p>
+        </details>
+
+        <hr />
+
+        <h2 id="code">Code</h2>
+        <p>
+          Inline code uses backticks via CSS, like <code>printf</code> or
+          <code>make build</code>.
+        </p>
+
+        <pre><code>#!/usr/bin/env bash
+set -euo pipefail
+
+echo "hello"
+echo "world"</code></pre>
+
+        <p>
+          Keyboard input looks like <kbd>Ctrl</kbd> <kbd>C</kbd>.
+        </p>
+
+        <hr />
+
+        <h2 id="tables">Tables</h2>
+        <table>
+          <caption>
+            Subtle caption, sans at 0.875em. Hover a body row to see a panel tint;
+            header and footer rows stay still.
+          </caption>
+          <thead>
+            <tr>
+              <th>Thing</th>
+              <th>Why it exists</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Baseline</td>
+              <td>Predictable rhythm</td>
+              <td>Baseline grid, strict spacing</td>
+            </tr>
+            <tr>
+              <td>Measure</td>
+              <td>Readable line length</td>
+              <td>Defaults to 68ch</td>
+            </tr>
+            <tr>
+              <td>Focus</td>
+              <td>Keyboard and links</td>
+              <td>Ring from <code>--focus</code></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th scope="row">Total rows (footer)</th>
+              <td>3</td>
+              <td>—</td>
+            </tr>
+          </tfoot>
+        </table>
+
+        <hr />
+
+        <h2 id="forms">Forms</h2>
+        <p>
+          Forms are styled lightly. If you want a full component kit, use a UI
+          framework. This is for small contact forms and simple inputs.
+        </p>
+
+        <form>
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="name@example.com" />
+
+          <label for="topic">Topic</label>
+          <select id="topic">
+            <option>Writing</option>
+            <option>Code</option>
+            <option>Something else</option>
+          </select>
+
+          <label for="message">Message</label><textarea
+            id="message"
+            placeholder="Say the thing."
+          ></textarea><button type="submit">Send</button>
+        </form>
+
+        <hr />
+
+        <h2 id="media">Media</h2>
+        <figure>
+          <img
+            src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20width='1200'%20height='600'%3E%3Crect%20width='1200'%20height='600'%20fill='%23e5e7eb'/%3E%3Ctext%20x='50%25'%20y='50%25'%20font-size='60'%20dominant-baseline='middle'%20text-anchor='middle'%20fill='%230f172a'%20font-family='Arial'%3Eimage%20placeholder%3C/text%3E%3C/svg%3E"
+            alt="Placeholder"
+          />
+          <figcaption>A figure with a caption.</figcaption>
+        </figure>
+      </article>
+    </main>
+
+    <footer>
+      <small>
+        Demo page for adbr.css. A short script in this page only toggles
+        <code>data-theme</code> on <code>&lt;html&gt;</code> and the
+        <code>debug</code> class on <code>&lt;body&gt;</code>.
+      </small>
+    </footer>
+    <script>
+      (function () {
+        var root = document.documentElement;
+        var body = document.body;
+        var debugBtn = document.getElementById("demo-toggle-debug");
+        var themeControls = document.querySelectorAll("[data-theme-ctrl]");
+        var themeSelect = document.getElementById("demo-theme-select");
+        var themeLink = document.getElementById("demo-theme-link");
+        var themeHrefs = {
+          "warm-paper-teal": "../themes/warm-paper-teal.css",
+          "cool-grey-indigo": "../themes/cool-grey-indigo.css",
+          "charcoal-cyan": "../themes/charcoal-cyan.css",
+        };
+
+        function activeTheme() {
+          var t = root.getAttribute("data-theme");
+          if (t === "light" || t === "dark") {
+            return t;
+          }
+          return "auto";
+        }
+
+        function setThemeMode(mode) {
+          if (mode === "light" || mode === "dark") {
+            root.setAttribute("data-theme", mode);
+          } else {
+            root.removeAttribute("data-theme");
+          }
+        }
+
+        function syncThemeControls() {
+          var current = activeTheme();
+          themeControls.forEach(function (el) {
+            var m = el.getAttribute("data-theme-ctrl");
+            var on = m === current;
+            el.classList.toggle("is-active", on);
+            el.setAttribute("aria-pressed", on ? "true" : "false");
+          });
+        }
+
+        function syncDebugButton() {
+          var on = body.classList.contains("debug");
+          debugBtn.setAttribute("aria-pressed", on ? "true" : "false");
+        }
+
+        debugBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          body.classList.toggle("debug");
+          syncDebugButton();
+        });
+
+        themeControls.forEach(function (el) {
+          el.addEventListener("click", function (e) {
+            e.preventDefault();
+            setThemeMode(el.getAttribute("data-theme-ctrl"));
+            syncThemeControls();
+          });
+        });
+
+        function setThemePalette(key) {
+          if (!key) {
+            themeLink.setAttribute("href", "");
+            themeLink.setAttribute("disabled", "");
+          } else {
+            themeLink.setAttribute("href", themeHrefs[key] || "");
+            themeLink.removeAttribute("disabled");
+          }
+          try {
+            localStorage.setItem("demo-theme-palette", key || "");
+          } catch (e) {}
+        }
+
+        function loadThemePalette() {
+          var stored = "";
+          try {
+            stored = localStorage.getItem("demo-theme-palette") || "";
+          } catch (e) {}
+          if (stored && themeHrefs[stored]) {
+            themeSelect.value = stored;
+            setThemePalette(stored);
+          } else {
+            themeSelect.value = "";
+            setThemePalette("");
+          }
+        }
+
+        themeSelect.addEventListener("change", function () {
+          setThemePalette(themeSelect.value);
+        });
+
+        syncThemeControls();
+        syncDebugButton();
+        loadThemePalette();
+      })();
+    </script>
+  </body>
+</html>

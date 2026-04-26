@@ -1,0 +1,61 @@
+/**
+ * adbr.css theme: Charcoal + Cyan
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="adbr.css">
+ *   <link rel="stylesheet" href="themes/charcoal-cyan.css">
+ */
+
+:root {
+  --bg: #ffffff;
+  --fg: #111827;
+  --muted: #6b7280;
+  --rule: #e5e7eb;
+  --accent: #0891b2;
+  --accent-hover: #0e7490;
+  --code-bg: #0b1220;
+  --code-fg: #d1d5db;
+  --code-inline: #22c55e;
+  --panel-bg: #f9fafb;
+  --panel-border: #e5e7eb;
+  --link-visited: #a21caf;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-scheme: dark;
+    --bg: #14181c;
+    --fg: #e8eaed;
+    --muted: #8b939c;
+    --rule: #343a42;
+    --accent: #22d3ee;
+    --accent-hover: #67e8f9;
+    --code-bg: #0a0c0e;
+    --code-fg: #c2ccd4;
+    --code-inline: #34d399;
+    --panel-bg: #1c2229;
+    --panel-border: #3a424d;
+    --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+    --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+    --link-visited: #f0abfc;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-scheme: dark;
+  --bg: #14181c;
+  --fg: #e8eaed;
+  --muted: #8b939c;
+  --rule: #343a42;
+  --accent: #22d3ee;
+  --accent-hover: #67e8f9;
+  --code-bg: #0a0c0e;
+  --code-fg: #c2ccd4;
+  --code-inline: #34d399;
+  --panel-bg: #1c2229;
+  --panel-border: #3a424d;
+  --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+  --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+  --link-visited: #f0abfc;
+}
+

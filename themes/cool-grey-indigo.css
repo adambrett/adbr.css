@@ -1,0 +1,61 @@
+/**
+ * adbr.css theme: Cool Grey + Indigo
+ *
+ * Usage:
+ *   <link rel="stylesheet" href="adbr.css">
+ *   <link rel="stylesheet" href="themes/cool-grey-indigo.css">
+ */
+
+:root {
+  --bg: #fcfcfd;
+  --fg: #111827;
+  --muted: #4b5563;
+  --rule: #e5e7eb;
+  --accent: #4f46e5;
+  --accent-hover: #4338ca;
+  --code-bg: #0f172a;
+  --code-fg: #c7d2fe;
+  --code-inline: #f97316;
+  --panel-bg: #f3f4f6;
+  --panel-border: #e5e7eb;
+  --link-visited: #9333ea;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --color-scheme: dark;
+    --bg: #14181c;
+    --fg: #e8eaed;
+    --muted: #8b939c;
+    --rule: #343a42;
+    --accent: #818cf8;
+    --accent-hover: #a5b4fc;
+    --code-bg: #0a0c0e;
+    --code-fg: #c2ccd4;
+    --code-inline: #fb923c;
+    --panel-bg: #1c2229;
+    --panel-border: #3a424d;
+    --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+    --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+    --link-visited: #c4b5fd;
+  }
+}
+
+:root[data-theme="dark"] {
+  --color-scheme: dark;
+  --bg: #14181c;
+  --fg: #e8eaed;
+  --muted: #8b939c;
+  --rule: #343a42;
+  --accent: #818cf8;
+  --accent-hover: #a5b4fc;
+  --code-bg: #0a0c0e;
+  --code-fg: #c2ccd4;
+  --code-inline: #fb923c;
+  --panel-bg: #1c2229;
+  --panel-border: #3a424d;
+  --shadow-inset: inset 0 1px 1px rgb(0 0 0 / 35%);
+  --focus: 0 0 0 3px color-mix(in srgb, var(--accent) 40%, transparent);
+  --link-visited: #c4b5fd;
+}
+
