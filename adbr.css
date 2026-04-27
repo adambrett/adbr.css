@@ -16,6 +16,7 @@
     --baseline: 1.6rem;
     --baseline-margin: calc(var(--baseline) - 0.0385rem);
     --measure: 68ch;
+    --gutter: clamp(1rem, 4vw, 2rem);
 
     /* fonts */
     --font-serif: "Georgia", "Iowan Old Style", "Charter", "Times New Roman", serif;
@@ -114,6 +115,7 @@
     font-family: var(--font-serif);
     font-size: 100%;
     line-height: var(--baseline);
+    padding-inline: var(--gutter);
   }
 
   main,
