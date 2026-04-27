@@ -27,7 +27,7 @@ theming.
 - **Quick test (not for production)**
 
 ```html
-<link rel="stylesheet" href="https://css.adbr.dev/adbr.css">
+<link rel="stylesheet" href="https://css.adbr.dev/adbr.min.css">
 ```
 
 - **Production (recommended)**
