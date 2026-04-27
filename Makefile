@@ -41,9 +41,7 @@ lint: ## Lint CSS
 
 # Building
 .PHONY: build
-build: ${MIN} ## Build adbr.min.css
-
-${MIN}: ${SRC}
+build: ## Build adbr.min.css
 	${NPM} run build
 
 # Make
