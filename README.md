@@ -95,8 +95,15 @@ theme, set `data-theme="light"` or `data-theme="dark"` on `:root`.
 
 The baseline rhythm unit is `--baseline` (default `1.6rem`).
 
-- Block spacing uses `margin-block-end: var(--baseline)`
-- Line-heights are `var(--baseline)` or a multiple
+- Block spacing generally uses `margin-block-end: var(--baseline-margin)`
+- Line-heights are `var(--baseline)` or a multiple (for example headings use \(2 \times\))
+
+`--baseline-margin` is separate from `--baseline` because `line-height` does not
+visually "center" glyphs within a line box. Line boxes are built around the
+font’s baseline, and the extra leading above and below glyphs is driven by the
+font’s ascent and descent metrics (and browser rules), which vary across font
+stacks and OS renderers. Keeping a separate margin token lets the stylesheet
+compensate for those differences while preserving a consistent rhythm.
 
 To debug baseline alignment, add `debug` to `<body>` and the stylesheet
 overlays horizontal grid lines.
