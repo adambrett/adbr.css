@@ -44,8 +44,6 @@ jobs:
         shell: bash
         run: |
           # Allowlist for Pages only; the rest of the repo is not published.
-          # Stylesheets point at adbr.css locally, but we rewrite to adbr.min.css
-          # for GitHub Pages so the deployed site uses the minified build output.
           rm -rf publish
           mkdir -p publish
           cp adbr.css publish/
@@ -53,11 +51,6 @@ jobs:
           cp index.html CNAME publish/
           cp -R demo publish/
           cp -R themes publish/
-          sed -i \
-            -e 's|href="adbr.css"|href="adbr.min.css"|g' \
-            -e 's|href="./adbr.css"|href="./adbr.min.css"|g' \
-            publish/index.html
-          sed -i 's|href="../adbr.css"|href="../adbr.min.css"|g' publish/demo/index.html
 
       - uses: actions/upload-pages-artifact@v3
         with:
