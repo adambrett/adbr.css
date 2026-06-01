@@ -17,6 +17,16 @@
         content: "";
       }
 
+      @media (max-width: 63.99rem) {
+        body {
+          border-top: 5px solid var(--accent);
+        }
+
+        body::before {
+          display: none;
+        }
+      }
+
       .demo-header-bar nav[aria-label="Demo"] {
         display: flex;
         flex-wrap: wrap;

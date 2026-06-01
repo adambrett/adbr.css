@@ -19,6 +19,16 @@
         background: var(--accent);
         content: "";
       }
+
+      @media (max-width: 63.99rem) {
+        body {
+          border-top: 5px solid var(--accent);
+        }
+
+        body::before {
+          display: none;
+        }
+      }
     </style>
   </head>
   <body>
